@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import store from "../../redux/store";
 import Header from "../../header/Header";
-import MovieCard from "../MovieCard";
+import MovieCard from "../cart/MovieCard";
 import {Provider} from "react-redux";
 
 class Home extends Component {
