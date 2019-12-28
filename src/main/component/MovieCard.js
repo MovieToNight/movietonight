@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
-import {Card, Divider, Icon, Image, Label, Rating} from 'semantic-ui-react'
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Table from "react-bootstrap/Table";
-import Col from "react-bootstrap/Col";
-import Carousel from "react-bootstrap/Carousel";
+
+import {Card, Divider, Image, Rating} from 'semantic-ui-react'
 import VideoPopup from "./VideoPopup";
 
 class MovieCard extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             name: props.name,
             releaseDate: props.releaseDate,
