@@ -38,8 +38,9 @@ const CardBuilder = (props) => {
                     props.movies.map(item =>
                         <div id = {item.id}>
                             <Card>
-                                <Image src={require('./movie.jpeg')} width="300" height="150"/>
                                 <Card.Content>
+                                    <Image
+                                        src={require('./movie.jpeg')} width="300" height="150"/>
                                     <Card.Header>{item.name}</Card.Header>
                                     <Card.Meta>
                                         <span className='date'>{item.date}</span>

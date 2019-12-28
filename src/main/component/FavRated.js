@@ -13,7 +13,6 @@ class FavRated extends Component {
     render() {
         return (
             <div>
-
                 <Rating icon='heart' defaultRating={this.state.fav} maxRating={1}/>
             </div>
         );

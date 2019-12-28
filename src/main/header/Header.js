@@ -44,7 +44,6 @@ class Header extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
 
                     <Nav className="mr-auto" onSelect={this.headerDropDownAction1}>
-
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/action">Action</NavDropdown.Item>
                             <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
