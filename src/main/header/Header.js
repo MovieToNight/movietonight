@@ -12,8 +12,6 @@ import Cookies from 'universal-cookie';
 import SearchBar from "../component/SearchBar";
 import {connect} from "react-redux";
 import headerDropDownAction from "../redux/header/headerDropdownActions";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
-import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 
 class Header extends Component {
 
@@ -27,16 +25,10 @@ class Header extends Component {
             password: '',
             email: '',
             isSignUpClicked: false,
-            isLoggedIn: cookies.get('movie_2_night_user') ? true : false,
+            isLoggedIn: !!cookies.get('movie_2_night_user'),
             curTime: new Date().toLocaleString(),
-        }
+        };
         this.inputRef = React.createRef()
-    }
-
-
-    headerMessage = () => {
-        console.log(this.props.message)
-        return this.props.message;
     }
 
     render() {
@@ -54,9 +46,9 @@ class Header extends Component {
                     <Nav className="mr-auto" onSelect={this.headerDropDownAction1}>
 
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="/action">Action</NavDropdown.Item>
                             <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="/something">Something</NavDropdown.Item>
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
@@ -125,14 +117,14 @@ class Header extends Component {
 
     changeHandler = e => {
         this.setState({[e.target.name]: e.target.value})
-    }
+    };
 
     signUpHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
         this.setState({
             isLoggedIn: true
         })
-    }
+    };
 
 
     changeUsername = (event) => {
@@ -140,36 +132,30 @@ class Header extends Component {
                 username: event.target.value
             }
         )
-    }
+    };
 
     changePassword = (event) => {
         this.setState({
                 password: event.target.value
             }
         )
-    }
-
+    };
     onSubmitHandler = event => {
-        event.preventDefault()
+        event.preventDefault();
         this.setState({
             isLoggedIn: true
-        })
+        });
         const cookies = new Cookies();
         cookies.set('movie_2_night_user', this.state.username, {path: '/'});
 
-    }
+    };
 
     hideMe = () => {
         this.setState({
                 isSignUpClicked: true
             }
         )
-    }
-
-    selectHandler = (e) => {
-        const selectedItem = e.target.value;
-
-    }
+    };
 
     headerDropDownAction1 = () => {
         this.props.dispatch(headerDropDownAction());
@@ -181,6 +167,6 @@ export const mapStateToProps = state => {
     return {
         selectedType: state.selectedType
     };
-}
+};
 
 export default connect(mapStateToProps)(Header);

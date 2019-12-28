@@ -3,17 +3,25 @@ import Header from "../../header/Header";
 import {Provider} from "react-redux";
 import store from "../../redux/store";
 
-class Sifi extends Component {
+class MovieType extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state ={
+            match : this.props.match
+        }
+    }
+
     render() {
         return (
             <div>
                 <Provider store={store}>
                     <Header message='Movie2Night'/>
-                    <h1>Hello Its SI-FI page</h1>
+                    <h1>Hello Its {this.state.match.params.genre} page</h1>
                 </Provider>
             </div>
         );
     }
 }
 
-export default Sifi;
+export default MovieType;
