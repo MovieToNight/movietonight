@@ -1,22 +1,17 @@
-import React, {Component} from 'react';
-import {Rating} from 'semantic-ui-react'
+import React from 'react';
 
-class FavRated extends Component {
-    constructor(props) {
-        super(props);
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
-        this.state = {
-            fav: this.props.fav
-        }
-    }
 
-    render() {
-        return (
-            <div>
-                <Rating icon='heart' defaultRating={this.state.fav} maxRating={1}/>
-            </div>
-        );
-    }
+
+
+export default function FavRated() {
+    const [selected, setSelected] = React.useState(false);
+
+    return (
+        <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+        </IconButton>
+    );
 }
-
-export default FavRated;

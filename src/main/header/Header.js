@@ -9,9 +9,10 @@ import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
-import SearchBar from "../component/SearchBar";
 import {connect} from "react-redux";
 import headerDropDownAction from "../redux/header/headerDropdownActions";
+import LogoutModel from "./LogoutModal";
+import SearchBar from "../component/SearchBar";
 
 class Header extends Component {
 
@@ -51,11 +52,7 @@ class Header extends Component {
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
-                        <SearchBar
-                            data={["a", 'b', 'c', "a", 'b', 'c', "a", 'b', 'c', "a", 'b', 'c', "a", 'b', 'c', "a", 'b', 'c']}/>
                     </Nav>
-
-
                     {/*Sign up form*/}
                     <Form inline={true} onSubmit={this.signUpHandler}
                           hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
@@ -98,12 +95,7 @@ class Header extends Component {
                     <Form hidden={!this.state.isLoggedIn}>
                         <Navbar.Collapse className="justify-content-end">
                             <Nav className="mr-auto">
-                                <Navbar.Text>
-                                    Signed in as:
-                                </Navbar.Text>
-                                <NavDropdown title={this.state.username} id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/">Logout</NavDropdown.Item>
-                                </NavDropdown>
+                                <LogoutModel/>
                             </Nav>
                         </Navbar.Collapse>
                     </Form>

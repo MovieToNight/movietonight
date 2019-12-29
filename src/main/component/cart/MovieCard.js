@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import "react-multi-carousel/lib/styles.css";
 import CardBuilder from "./CardBuilder";
+import SearchBar from "../SearchBar";
+import Container from "@material-ui/core/Container";
 
 class MovieCard extends Component {
 
@@ -42,11 +44,14 @@ class MovieCard extends Component {
     render() {
         return (
             <div>
+                <Container  maxWidth='lg' fluid={true} className="scrolling-wrapper"><br/>
+                <SearchBar/>
                 <CardBuilder movies={this.state.action} type = 'Action'/>
                 <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
                 <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
                 <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
                 <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
+                </Container>
             </div>
         );
     }

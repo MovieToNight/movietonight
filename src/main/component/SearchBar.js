@@ -1,53 +1,81 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import {Typeahead} from 'react-bootstrap-typeahead'; // ES2015
+import 'isomorphic-fetch';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-class SearchBar extends Component {
-
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            minLength: 0,
-            open: undefined,
-            data : props.data
-        };
-    }
-
-
-    changeEvent = (e) => {
-        const {checked, name} = e.target;
-        const newState = {[name]: checked};
-
-        switch (name) {
-            case 'minLength':
-                newState[name] = checked ? 2 : 0;
-                break;
-            case 'open':
-                newState[name] = checked ? true : undefined;
-                break;
-            default:
-                break;
-        }
-
-        this.setState(newState);
-    }
-
-    render() {
-        return (
-            <Typeahead
-                {...this.state}
-                id="basic-example"
-                onChange={this.changeEvent}
-                options={this.state.data}
-                placeholder="Movies like"
-                maxVisible={0}
-
-            />
-        )
-
-    }
+function sleep(delay = 0) {
+    return new Promise(resolve => {
+        setTimeout(resolve, delay);
+    });
 }
 
-export default SearchBar;
+export default function SearchBar() {
+    const [open, setOpen] = React.useState(false);
+    const [options, setOptions] = React.useState([]);
+    const loading = open && options.length === 0;
+
+    React.useEffect(() => {
+        let active = true;
+
+        if (!loading) {
+            return undefined;
+        }
+
+        (async () => {
+            const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
+            await sleep(1e3); // For demo purposes.
+            const countries = await response.json();
+
+            if (active) {
+                setOptions(Object.keys(countries).map(key => countries[key].item[0]));
+            }
+        })();
+
+        return () => {
+            active = false;
+        };
+    }, [loading]);
+
+    React.useEffect(() => {
+        if (!open) {
+            setOptions([]);
+        }
+    }, [open]);
+
+    return (
+        <Autocomplete
+            id="Movies Like"
+            style={{width: 300}}
+            open={open}
+            onOpen={() => {
+                setOpen(true);
+            }}
+            onClose={() => {
+                setOpen(false);
+            }}
+            getOptionSelected={(option, value) => option.name === value.name}
+            getOptionLabel={option => option.name}
+            options={options}
+            loading={loading}
+            renderInput={params => (
+                <TextField
+                    {...params}
+                    label="Movies Like"
+                    fullWidth
+                    variant='outlined'
+                    InputProps={{
+                        ...params.InputProps,
+                        endAdornment: (
+                            <React.Fragment>
+                                {loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                {params.InputProps.endAdornment}
+                            </React.Fragment>
+                        ),
+                    }}
+                />
+            )}
+        />
+    );
+}

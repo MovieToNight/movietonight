@@ -3,6 +3,7 @@ import store from "../../redux/store";
 import Header from "../../header/Header";
 import MovieCard from "../cart/MovieCard";
 import {Provider} from "react-redux";
+import SearchBar from "../SearchBar";
 
 class Home extends Component {
     constructor(props) {
