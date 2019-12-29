@@ -48,11 +48,33 @@ class Header extends Component {
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/action">Action</NavDropdown.Item>
                             <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
                             <NavDropdown.Item href="/something">Something</NavDropdown.Item>
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+
                     {/*Sign up form*/}
                     <Form inline={true} onSubmit={this.signUpHandler}
                           hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>

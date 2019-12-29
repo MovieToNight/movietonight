@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/moviestonight.iml" filepath="$PROJECT_DIR$/.idea/moviestonight.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/m2n-client.iml" filepath="$PROJECT_DIR$/.idea/m2n-client.iml" />
     </modules>
   </component>
 </project>
