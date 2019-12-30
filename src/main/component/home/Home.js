@@ -3,7 +3,8 @@ import store from "../../redux/store";
 import Header from "../../header/Header";
 import MovieCard from "../cart/MovieCard";
 import {Provider} from "react-redux";
-import SearchBar from "../SearchBar";
+import {Helmet} from "react-helmet";
+
 
 class Home extends Component {
     constructor(props) {
@@ -26,6 +27,10 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <Helmet bodyAttributes={{style: 'background-color : white'}}>
+                    <meta charSet="utf-8" />
+                    <title>Movie2Night</title>
+                </Helmet>
                 <Provider store={store}>
                     <Header message='Movie2Night'/>
                     <MovieCard name='Dabang'

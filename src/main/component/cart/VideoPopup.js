@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import {blue} from "@material-ui/core/colors";
 
 function VideoPopup() {
 
@@ -60,17 +61,17 @@ function MydModalWithGrid(props) {
                     <Row className="show-grid">
                         <Col xs={6} md={4}>
                             <code>
-                                Runtime: 136 min
+                                <b>Runtime</b>: 136 min
                             </code>
                         </Col>
                         <Col xs={6} md={4}>
                             <code>
-                                Genre: Action, Adventure, Comedy, Sci-Fi
+                                <b>Genre</b>: Action, Adventure, Comedy, Sci-Fi
                             </code>
                         </Col>
                         <Col xs={6} md={4}>
                             <code>
-                                Actors: Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel
+                                <b>Actors</b>: Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel
                             </code>
                         </Col>
                     </Row>
@@ -78,12 +79,12 @@ function MydModalWithGrid(props) {
                     <Row className="show-grid">
                         <Col xs={6} md={4}>
                             <code>
-                                IMDB: 5.5
+                                <b>IMDB</b>: 5.5
                             </code>
                         </Col>
                         <Col xs={6} md={4}>
                             <code>
-                                Rotten Tomatoes : 55
+                                <b>Rotten Tomatoes</b> : 55
                             </code>
                         </Col>
                     </Row>

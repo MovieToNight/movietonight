@@ -4,14 +4,39 @@ import 'isomorphic-fetch';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+
+
+
 
 function sleep(delay = 0) {
     return new Promise(resolve => {
         setTimeout(resolve, delay);
     });
 }
-
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 400,
+    },
+    input: {
+        marginLeft: theme.spacing(1),
+        flex: 1,
+    },
+    iconButton: {
+        padding: 10,
+    },
+    divider: {
+        height: 28,
+        margin: 4,
+    },
+}));
 export default function SearchBar() {
+    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -45,37 +70,48 @@ export default function SearchBar() {
     }, [open]);
 
     return (
-        <Autocomplete
-            id="Movies Like"
-            style={{width: 300}}
-            open={open}
-            onOpen={() => {
-                setOpen(true);
-            }}
-            onClose={() => {
-                setOpen(false);
-            }}
-            getOptionSelected={(option, value) => option.name === value.name}
-            getOptionLabel={option => option.name}
-            options={options}
-            loading={loading}
-            renderInput={params => (
-                <TextField
-                    {...params}
-                    label="Movies Like"
-                    fullWidth
-                    variant='outlined'
-                    InputProps={{
-                        ...params.InputProps,
-                        endAdornment: (
-                            <React.Fragment>
-                                {loading ? <CircularProgress color="inherit" size={20}/> : null}
-                                {params.InputProps.endAdornment}
-                            </React.Fragment>
-                        ),
-                    }}
-                />
-            )}
-        />
+        <div>
+            <Autocomplete
+                id="Movies Like"
+                style={{width: 300}}
+                open={open}
+                onOpen={() => {
+                    setOpen(true);
+                }}
+                onClose={() => {
+                    setOpen(false);
+                }}
+                getOptionSelected={(option, value) => option.name === value.name}
+                getOptionLabel={option => option.name}
+                options={options}
+                loading={loading}
+
+                renderInput=
+                    {
+                        params => (
+                            <TextField
+                                {...params}
+                                label="Movies Like"
+                                placeholder={'Search Similar Movies'}
+                                fullWidth
+                                variant='outlined'
+                                InputProps={{
+                                    ...params.InputProps,
+                                    startAdornment:(
+                                        <IconButton className={classes.iconButton} aria-label="menu">
+                                            <SearchIcon/>
+                                        </IconButton>
+                                    ),
+                                    endAdornment: (
+                                        <React.Fragment>
+                                            {loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                        </React.Fragment>
+                                    ),
+                                }}
+                                style={{width : 350}}
+                            />
+                        )}
+            />
+        </div>
     );
 }

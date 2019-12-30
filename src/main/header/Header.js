@@ -12,6 +12,7 @@ import Cookies from 'universal-cookie';
 import {connect} from "react-redux";
 import headerDropDownAction from "../redux/header/headerDropdownActions";
 import LogoutModel from "./LogoutModal";
+import {Sticky} from "semantic-ui-react";
 import SearchBar from "../component/SearchBar";
 
 class Header extends Component {
@@ -34,97 +35,97 @@ class Header extends Component {
 
     render() {
         return (
-            <Navbar bg="dark" expand="lg" variant="dark">
+            <Sticky>
+                <Navbar bg="dark" expand="lg" variant="dark">
 
-                <Navbar.Brand href="/">
-                    {/*{<img src={require("./logo.svg")} color={'red'} alt = "logo" width="250" height="70"/>}*/}
-                    Home
-                </Navbar.Brand>
+                    <Navbar.Brand href="/">
+                        {<img src={require("./logo/M2N-logos_black.png")} alt="logo" width="100" height="50"/>}
+                    </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
 
-                    <Nav className="mr-auto" onSelect={this.headerDropDownAction1}>
-                        <NavDropdown title="Categories" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/action">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                            <NavDropdown.Item href="/something">Something</NavDropdown.Item>
-                            <NavDropdown.Divider/>
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
+                        <Nav className="mr-auto" onSelect={this.headerDropDownAction1}>
+                            <NavDropdown title="Categories" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/action">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
+                                <NavDropdown.Item href="/something">Something</NavDropdown.Item>
+                                <NavDropdown.Divider/>
+                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                        {/*Sign up form*/}
+                        <Form inline={true} onSubmit={this.signUpHandler}
+                              hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
+                            <Form.Group controlId="signUpForm">
+                                <FormControl type="text" name="username" placeholder="Enter Username"
+                                             value={this.state.username} onChange={this.changeHandler}
+                                             required={true} minLength={5} className="mr-sm-2"/>
+                                <FormControl type="text" name="password" placeholder="Enter Password"
+                                             value={this.state.password} onChange={this.changeHandler}
+                                             required={true} minLength={5} className="mr-sm-2"/>
+                                <FormControl type="text" name="email" placeholder="Enter Mail" value={this.state.email}
+                                             onChange={this.changeHandler} required={true}
+                                             minLength={5} className="mr-sm-2"/>
+                            </Form.Group>
+                            <Button variant="outline-success" type='submit' onClick={this.hideMe}>SignUp</Button>
+                        </Form>
 
-                    {/*Sign up form*/}
-                    <Form inline={true} onSubmit={this.signUpHandler}
-                          hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
-                        <Form.Group controlId="signUpForm">
-                            <FormControl type="text" name="username" placeholder="Enter Username"
-                                         value={this.state.username} onChange={this.changeHandler}
-                                         required={true} minLength={5} className="mr-sm-2"/>
-                            <FormControl type="text" name="password" placeholder="Enter Password"
-                                         value={this.state.password} onChange={this.changeHandler}
-                                         required={true} minLength={5} className="mr-sm-2"/>
-                            <FormControl type="text" name="email" placeholder="Enter Mail" value={this.state.email}
-                                         onChange={this.changeHandler} required={true}
-                                         minLength={5} className="mr-sm-2"/>
-                        </Form.Group>
-                        <Button variant="outline-success" type='submit' onClick={this.hideMe}>SignUp</Button>
-                    </Form>
+                        {/* Logged in form*/}
 
-                    {/* Logged in form*/}
+                        <Form inline={true} onSubmit={this.onSubmitHandler}
+                              hidden={this.state.isSignUpClicked || this.state.isLoggedIn}>
+                            <Form.Group controlId="loginForm">
+                                <FormControl type="text" name="username" placeholder="Enter Username"
+                                             ref={this.inputRef}
+                                             required
+                                             value={this.state.username} onChange={this.changeUsername}
+                                             className="mr-sm-2"/>
+                                <FormControl type="password" placeholder="Enter Password" required
+                                             value={this.state.password}
+                                             onChange={this.changePassword} className="mr-sm-2"/>
+                            </Form.Group>
 
-                    <Form inline={true} onSubmit={this.onSubmitHandler}
-                          hidden={this.state.isSignUpClicked || this.state.isLoggedIn}>
-                        <Form.Group controlId="loginForm">
-                            <FormControl type="text" name="username" placeholder="Enter Username"
-                                         ref={this.inputRef}
-                                         required
-                                         value={this.state.username} onChange={this.changeUsername}
-                                         className="mr-sm-2"/>
-                            <FormControl type="password" placeholder="Enter Password" required
-                                         value={this.state.password}
-                                         onChange={this.changePassword} className="mr-sm-2"/>
-                        </Form.Group>
+                            <ButtonToolbar>
+                                <Button variant="outline-success" type={"submit"}> Login</Button>
+                                <Button variant="outline-success" type='button' onClick={this.hideMe}> SignUp</Button>
+                            </ButtonToolbar>
 
-                        <ButtonToolbar>
-                            <Button variant="outline-success" type={"submit"}> Login</Button>
-                            <Button variant="outline-success" type='button' onClick={this.hideMe}> SignUp</Button>
-                        </ButtonToolbar>
+                        </Form>
 
-                    </Form>
-
-                    <Form hidden={!this.state.isLoggedIn}>
-                        <Navbar.Collapse className="justify-content-end">
-                            <Nav className="mr-auto">
-                                <LogoutModel/>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Form>
+                        <Form hidden={!this.state.isLoggedIn}>
+                            <Navbar.Collapse className="justify-content-end">
+                                <Nav className="mr-auto">
+                                    <LogoutModel/>
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Form>
 
 
-                </Navbar.Collapse>
-            </Navbar>
+                    </Navbar.Collapse>
+                </Navbar>
+            </Sticky>
         );
     }
 
