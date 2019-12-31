@@ -3,6 +3,7 @@ import store from "./main/redux/store";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from "./main/component/home/Home";
 import MovieType from "./main/component/pages/MovieType";
+import Movie from "./main/component/cart/Movie";
 
 
 class App extends Component {
@@ -27,13 +28,9 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route exact path={"/"} component={Home}/>
-                    <Route path={'/:genre'} component={MovieType}/>
-                </Switch>
-            </Router>
-
+            <div>
+                <Movie/>
+            </div>
         );
     }
 }

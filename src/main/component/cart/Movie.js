@@ -3,8 +3,11 @@ import axios from 'axios';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
-import {Button} from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import MaterialUIForm from 'react-material-ui-form'
+import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
+import {Title} from "@material-ui/icons";
+
 
 class Movie extends Component {
     constructor(props) {
@@ -13,7 +16,9 @@ class Movie extends Component {
         this.state = {
             movies: [],
             error: [],
-            selectedMovieID: ''
+            selectedMovieID: '',
+            rating: 0,
+            moviesFetchedByID: []
         }
     }
 
@@ -39,9 +44,7 @@ class Movie extends Component {
                     console.log(val)
                 })
         }
-        {
-            console.log("On Change")
-        }
+
     }
 
 
@@ -50,35 +53,107 @@ class Movie extends Component {
         const {movies} = this.state
         return (
             <div>
-                <Container>
-                    {/*{movies.length ? movies.map(r=>{t = r.Title}) : error}*/}
-                    <Autocomplete
-                        id="combo-box-demo"
-                        options={movies}
-                        getOptionLabel={option => option.Title + "-" + option.imdbID}
-                        filterSelectedOptions={true}
-                        style={{width: 300}}
-                        renderInput={params => (
-                            <TextField
-                                {...params}
-                                label="Combo box" variant="outlined" fullWidth
-                                onChange={this.handleChange}
-                                onBlur={this.printState}
+
+                <MaterialUIForm onSubmit={this.printAll}>
+                    <FormControl>
+                        <Container>
+                            {/*{movies.length ? movies.map(r=>{t = r.Title}) : error}*/}
+                            <Autocomplete
+                                id="combo-box-demo"
+                                options={movies}
+                                getOptionLabel={option => option.Title + "-" + option.imdbID}
+                                filterSelectedOptions={true}
+                                style={{width: 300}}
+                                renderInput={params => (
+                                    <TextField
+                                        {...params}
+                                        label="Combo box" variant="outlined" fullWidth
+                                        onChange={this.handleChange}
+                                        onBlur={this.printState}
+                                    />
+                                )}
+                            >
+                            </Autocomplete>
+
+                            <TextField label="Rating"
+                                       type="number"
+                                       name="rating"
+                                       value={this.state.rating}
+                                       data-validators="isRequired,isAlpha"
+                                       onChange={this.getRating}
                             />
-                        )}
-                    >
-                    </Autocomplete>
-                </Container>
+
+                            <Button variant="" type="submit">Submit</Button>
+                        </Container>
+
+                    </FormControl>
+
+                </MaterialUIForm>
+
             </div>
         );
     }
 
-    printState = e => {
+    printState = (e) => {
         this.setState({
             selectedMovieID: e.target.value.split('-')[1]
         })
 
     }
+
+    getRating = (e) => {
+        this.setState(
+            {
+                [e.target.name]: e.target.value
+            }
+        )
+
+    }
+
+    printAll = (e) => {
+
+        const url = "http://www.omdbapi.com/?i=" + this.state.selectedMovieID + "&apikey=80bca1c4";
+
+        console.log(url)
+
+
+        var movie = '';
+
+        axios.get(url)
+            .then(res => {
+                axios.post('http://localhost:8080/add',
+                    {
+
+                        'imdbData': res,
+                    },
+                    {
+                        "Access-Control-Allow-Origin": "*",
+                    }
+                    ,
+                )
+                    .then(res => {
+                        console.log("Res "+res.data)
+                    })
+                    .catch(val => {
+                        console.log(val)
+                    })
+
+            })
+            .catch(val => {
+                console.log(val)
+            })
+
+
+
+
+
+
+        console.log('Request body', this.state.moviesFetchedByID)
+        console.log('Request body', movie)
+
+
+    }
+
 }
 
 export default Movie;

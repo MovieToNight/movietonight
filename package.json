@@ -17,6 +17,8 @@
     "react-bootstrap-typeahead": "^3.4.7",
     "react-dom": "^16.12.0",
     "react-horizontal-scrolling-menu": "^0.7.4",
+    "react-jss": "^10.0.2",
+    "react-material-ui-form": "^1.1.4",
     "react-multi-carousel": "^2.5.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
