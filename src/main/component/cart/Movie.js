@@ -1,45 +1,83 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import {Button} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 class Movie extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            movies: []
+            movies: [],
+            error: [],
+            selectedMovieID: ''
         }
     }
 
-    componentDidMount() {
-
-        axios.get("http://192.168.0.104:8080/hello",{
-                "Access-Control-Allow-Origin": "*",
-            }
-        ,
+    handleChange = (e) => {
+        if (e.target.value.length > 1) {
+            const url = "http://www.omdbapi.com/?s=" + e.target.value + "&apikey=80bca1c4";
+            console.log(url)
+            axios.get(url,
+                {
+                    "Access-Control-Allow-Origin": "*",
+                }
+                ,
             )
-            .then(res => {
-                // console.log(res.data)
-                this.setState({movies: res.data})
-            })
-            .catch()
+                .then(res => {
+                    // console.log(res.data)
+                    if (res.data.Response == 'False') {
+                        this.setState({error: "Movie Not found"})
+                    } else {
+                        this.setState({movies: res.data.Search})
+                    }
+                })
+                .catch(val => {
+                    console.log(val)
+                })
+        }
+        {
+            console.log("On Change")
+        }
     }
 
+
     render() {
-        const {movies}  = this.state
+
+        const {movies} = this.state
         return (
             <div>
-                <ol>
-                List of movies {
-                movies.length ?
-                movies.map(v=><div id={v.id} >
-                <img src={v.thumbnailUrl}/>
-                </div>)
-                    : "no movies"
-
-            }
-                </ol>
+                <Container>
+                    {/*{movies.length ? movies.map(r=>{t = r.Title}) : error}*/}
+                    <Autocomplete
+                        id="combo-box-demo"
+                        options={movies}
+                        getOptionLabel={option => option.Title + "-" + option.imdbID}
+                        filterSelectedOptions={true}
+                        style={{width: 300}}
+                        renderInput={params => (
+                            <TextField
+                                {...params}
+                                label="Combo box" variant="outlined" fullWidth
+                                onChange={this.handleChange}
+                                onBlur={this.printState}
+                            />
+                        )}
+                    >
+                    </Autocomplete>
+                </Container>
             </div>
         );
+    }
+
+    printState = e => {
+        this.setState({
+            selectedMovieID: e.target.value.split('-')[1]
+        })
+
     }
 }
 
