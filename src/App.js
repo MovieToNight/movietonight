@@ -28,9 +28,15 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <Movie/>
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path={"/"} component={Home}/>
+                    <Route exact path={'/:genre'} component={MovieType}/>
+                    <Route exact path={'/m2n/admin'} component={Movie}/>
+
+                </Switch>
+            </Router>
+
         );
     }
 }

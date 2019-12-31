@@ -3,54 +3,58 @@ import "react-multi-carousel/lib/styles.css";
 import CardBuilder from "./CardBuilder";
 import SearchBar from "../SearchBar";
 import Container from "@material-ui/core/Container";
+import axios from "axios";
 
 class MovieCard extends Component {
+
 
     constructor(props) {
         super(props);
         this.state = {
-            action: [],
-            sifi: []
+            data: {'': []},
+            data1: []
         }
     }
 
-    componentDidMount() {
-        this.setState({
-            action: [
-                {id: '1', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '2', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '3', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '4', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '5', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '6', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '7', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-                {id: '8', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'action'},
-            ],
 
-            sifi: [
-                {id: '1', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '2', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '3', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '4', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '5', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '6', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '7', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-                {id: '8', url: '', name: 'Dabang', date: '28 December 2019', rating: '3', type: 'sifi'},
-            ]
-        })
+    componentDidMount() {
+        axios.get('http://localhost:8080/movies')
+            .then(res => {
+                let arr = [];
+                Object
+                        .keys(res.data.movieTypeToMovies)
+                        .forEach(
+                        function (key) {
+                            arr.push(res.data.movieTypeToMovies[key]);
+                        });
+                    this.setState({
+                        data1: arr
+                    })
+                }
+            )
+            .catch(val => {
+                console.log(val)
+            })
+
     }
 
 
     render() {
         return (
             <div>
-                <Container  maxWidth='lg' fluid={true} className="scrolling-wrapper"><br/>
-                <SearchBar/>
-                <CardBuilder movies={this.state.action} type = 'Action'/>
-                <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
-                <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
-                <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
-                <CardBuilder movies={this.state.sifi} type = 'Sifi'/>
+                <Container maxWidth='lg' fluid={true} className="scrolling-wrapper"><br/>
+                    <SearchBar/>
+                    {
+
+                        this.state.data1.map((val, index) =>
+
+                            <CardBuilder movies={val} type = {
+                                val[0].type
+                            }/>
+
+                        )
+
+                    }
                 </Container>
             </div>
         );

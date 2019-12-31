@@ -7,6 +7,12 @@ import MaterialUIForm from 'react-material-ui-form'
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import {Title} from "@material-ui/icons";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Header from "../../header/Header";
+import Navbar from "react-bootstrap/Navbar";
+import {Sticky} from "semantic-ui-react";
 
 
 class Movie extends Component {
@@ -54,6 +60,12 @@ class Movie extends Component {
         return (
             <div>
 
+                <Navbar bg="dark" expand="lg" variant="dark">
+                    <Navbar.Brand href="/">
+                        {<img src={require("./M2N-logos_black.png")} alt="logo" width="100" height="50"/>}
+                    </Navbar.Brand>
+                </Navbar>
+
                 <MaterialUIForm onSubmit={this.printAll}>
                     <FormControl>
                         <Container>
@@ -75,14 +87,20 @@ class Movie extends Component {
                             >
                             </Autocomplete>
 
-                            <TextField label="Rating"
-                                       type="number"
-                                       name="rating"
-                                       value={this.state.rating}
-                                       data-validators="isRequired,isAlpha"
-                                       onChange={this.getRating}
-                            />
-
+                            <InputLabel>Rating</InputLabel>
+                            <Select value={this.state.rating} name="Rating" onChange={this.getRating}>
+                                <MenuItem value=""><em>Please select Rating ...</em></MenuItem>
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
+                                <MenuItem value={4}>4</MenuItem>
+                                <MenuItem value={5}>5</MenuItem>
+                                <MenuItem value={6}>6</MenuItem>
+                                <MenuItem value={7}>7</MenuItem>
+                                <MenuItem value={8}>8</MenuItem>
+                                <MenuItem value={9}>9</MenuItem>
+                                <MenuItem value={10}>10</MenuItem>
+                            </Select>
                             <Button variant="" type="submit">Submit</Button>
                         </Container>
 
@@ -132,7 +150,7 @@ class Movie extends Component {
                     ,
                 )
                     .then(res => {
-                        console.log("Res "+res.data)
+                        console.log("Res " + res.data)
                     })
                     .catch(val => {
                         console.log(val)
@@ -142,10 +160,6 @@ class Movie extends Component {
             .catch(val => {
                 console.log(val)
             })
-
-
-
-
 
 
         console.log('Request body', this.state.moviesFetchedByID)
