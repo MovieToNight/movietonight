@@ -28,14 +28,17 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route exact path={"/"} component={Home}/>
-                    <Route exact path={'/:genre'} component={MovieType}/>
-                    <Route exact path={'/m2n/admin'} component={Movie}/>
+            <div style={{backgroundColor: '#f2f2f2'}}>
 
-                </Switch>
-            </Router>
+                <Router>
+                    <Switch>
+                        <Route exact path={"/"} component={Home}/>
+                        <Route exact path={'/:genre'} component={MovieType}/>
+                        <Route exact path={'/m2n/admin'} component={Movie}/>
+
+                    </Switch>
+                </Router>
+            </div>
 
         );
     }

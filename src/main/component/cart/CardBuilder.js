@@ -43,11 +43,13 @@ const responsive = {
         slidesToSlide: 2
     },
 };
+const printLog = (e) => {
+    console.log(e.target)
 
+}
 
 const CardBuilder = (props) => {
     const classes = useStyles();
-
 
     return (
         <div>
@@ -57,29 +59,30 @@ const CardBuilder = (props) => {
                 {
                     props.movies.map(item =>
                         <div id={item.id}>
-                            {console.log(item)}
-                            <Card className={classes.card}>
+                            <Card className={classes.card} raised={true} variant={"elevation"}>
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}
                                         image={item.url}
                                         title={item.name}
                                     />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">{item.name}</Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                    <CardContent id={item.id} onClick={printLog}>
+                                        <Typography gutterBottom variant={"caption"} className={""}
+                                                    component="h2"><b>{item.name}</b></Typography>
+                                        <Typography variant="body1" color="textSecondary" component="p">
                                             <VideoPopup
-                                                url = {item.url}
-                                                name = {item.name}
-                                                date = {item.date}
-                                                imdbRating = {item.imdbRating}
-                                                type = {item.type}
-                                                genre = {item.genre}
-                                                actors = {item.actors}
-                                                description = {item.description}
-                                                runtime = {item.runtime}
-                                                />
-                                            <Rating name="half-rating" value={item.rating} precision={0.5} readOnly={true}/>
+                                                url={item.url}
+                                                name={item.name}
+                                                date={item.date}
+                                                imdbRating={item.imdbRating}
+                                                type={item.type}
+                                                genre={item.genre}
+                                                actors={item.actors}
+                                                description={item.description}
+                                                runtime={item.runtime}
+                                            />
+                                            <Rating name="half-rating" value={item.rating} precision={0.5}
+                                                    readOnly={true}/>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

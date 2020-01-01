@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import {Button, Embed} from 'semantic-ui-react'
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
@@ -12,10 +12,10 @@ function VideoPopup(props) {
 
     return (
         <ButtonToolbar>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+            <Button variant="outline-dark" size={"tiny"} onClick={() => setModalShow(true)}>
                 Movie Info
             </Button>
-            <MydModalWithGrid value = {props} show={modalShow} onHide={() => setModalShow(false)}/>
+            <MydModalWithGrid value={props} show={modalShow} onHide={() => setModalShow(false)}/>
         </ButtonToolbar>
     );
 }
@@ -24,7 +24,6 @@ function VideoPopup(props) {
 const MydModalWithGrid = (props) => {
     return (
         <div>
-            {console.log("Before model tag",props.value)}
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" size={'lg'} animation={true}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -54,8 +53,6 @@ const MydModalWithGrid = (props) => {
                             </Col>
                             <Col xs={6} md={4}>
                                 <code>
-
-                                    {console.log("Description:", props.value.description)}
                                     {props.value.description}
                                 </code>
                             </Col>
