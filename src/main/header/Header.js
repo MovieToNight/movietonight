@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import headerDropDownAction from "../redux/header/headerDropdownActions";
 import LogoutModel from "./LogoutModal";
 import {Sticky} from "semantic-ui-react";
-import SearchBar from "../component/SearchBar";
+import axios from "axios";
 
 class Header extends Component {
 
@@ -29,8 +29,24 @@ class Header extends Component {
             isSignUpClicked: false,
             isLoggedIn: !!cookies.get('movie_2_night_user'),
             curTime: new Date().toLocaleString(),
+            movieTypes: []
         };
         this.inputRef = React.createRef()
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:8080/types",
+            {
+                "Access-Control-Allow-Origin": "*",
+            }
+            ,
+        )
+            .then(res => {
+                this.setState({movieTypes: res.data})
+            })
+            .catch(val => {
+                console.log(val)
+            })
     }
 
     render() {
@@ -47,32 +63,11 @@ class Header extends Component {
 
                         <Nav className="mr-auto" onSelect={this.headerDropDownAction1}>
                             <NavDropdown title="Categories" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/action">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/sifi">Si-fi</NavDropdown.Item>
-                                <NavDropdown.Item href="/something">Something</NavDropdown.Item>
+                                {this.state.movieTypes.map(val =>
+                                    <NavDropdown.Item href={"/" + val}>{val}</NavDropdown.Item>
+                                )}
                                 <NavDropdown.Divider/>
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.4">Liked Movies</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         {/*Sign up form*/}

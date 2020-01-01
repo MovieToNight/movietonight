@@ -111,7 +111,7 @@ class Movie extends Component {
 
                             <br/>
 
-                            <Button variant="contained" type="submit" onClick={this.clear}>Submit</Button>
+                            <Button variant="contained" type="submit">Submit</Button>
                             <br/>
                             <Button variant="contained" type="Reset" onClick={this.clear}>Reset</Button>
                         </FormControl>
@@ -187,16 +187,15 @@ class Movie extends Component {
 
         const url = "http://www.omdbapi.com/?i=" + this.state.selectedMovieID + "&apikey=80bca1c4";
 
+
+
+
         console.log(url)
-
-
-        var movie = '';
-
+        let movie = '';
         axios.get(url)
             .then(res => {
                 axios.post('http://localhost:8080/add',
                     {
-
                         'imdbData': res,
                         'rating': this.state.rating,
                         'type': this.state.movieType

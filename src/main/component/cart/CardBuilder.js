@@ -57,18 +57,29 @@ const CardBuilder = (props) => {
                 {
                     props.movies.map(item =>
                         <div id={item.id}>
+                            {console.log(item)}
                             <Card className={classes.card}>
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}
-                                        image={require('./movie.jpeg')}
+                                        image={item.url}
                                         title={item.name}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">{item.name}</Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            <VideoPopup/>
-                                            <Rating name="half-rating" value={2.5} precision={0.5} readOnly={true}/>
+                                            <VideoPopup
+                                                url = {item.url}
+                                                name = {item.name}
+                                                date = {item.date}
+                                                imdbRating = {item.imdbRating}
+                                                type = {item.type}
+                                                genre = {item.genre}
+                                                actors = {item.actors}
+                                                description = {item.description}
+                                                runtime = {item.runtime}
+                                                />
+                                            <Rating name="half-rating" value={item.rating} precision={0.5} readOnly={true}/>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
