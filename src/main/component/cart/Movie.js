@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Navbar from "react-bootstrap/Navbar";
+import MySnackbarContentWrapper from "../notification/MySnackbarContentWrapper";
 
 
 class Movie extends Component {
@@ -21,17 +22,17 @@ class Movie extends Component {
             selectedMovieID: '',
             movieType: '',
             moviesFetchedByID: [],
-            rating: ''
+            rating: '',
+            message: ''
         }
     }
 
 
     render() {
-
         const {movies} = this.state
+
         return (
             <div>
-
                 <Navbar bg="dark" expand="lg" variant="dark">
                     <Navbar.Brand href="/">
                         {<img src={require("./M2N-logos_black.png")} alt="logo" width="100" height="50"/>}
@@ -107,19 +108,13 @@ class Movie extends Component {
                                 <MenuItem value={9}>9</MenuItem>
                                 <MenuItem value={10}>10</MenuItem>
                             </Select>
-
-
                             <br/>
-
-                            <Button variant="contained" type="submit">Submit</Button>
+                            <MySnackbarContentWrapper message={this.state.message}/>
                             <br/>
                             <Button variant="contained" type="Reset" onClick={this.clear}>Reset</Button>
                         </FormControl>
                     </Container>
-
-
                 </MaterialUIForm>
-
             </div>
         );
     }
@@ -165,7 +160,6 @@ class Movie extends Component {
 
     }
 
-
     handleRating = (e) => {
         this.setState({
             rating: e.target.value
@@ -184,12 +178,7 @@ class Movie extends Component {
     }
 
     printAll = (e) => {
-
         const url = "http://www.omdbapi.com/?i=" + this.state.selectedMovieID + "&apikey=80bca1c4";
-
-
-
-
         console.log(url)
         let movie = '';
         axios.get(url)
@@ -207,18 +196,24 @@ class Movie extends Component {
                 )
                     .then(res => {
                         console.log("Res " + res.data)
+                        this.setState({
+                            message: 'Successfully Added'
+                        })
                     })
                     .catch(val => {
                         console.log(val)
+                        this.setState({
+                            message: 'Failed to add'
+                        })
                     })
 
             })
             .catch(val => {
+                this.setState({
+                    message: 'Failed load from imdb'
+                })
                 console.log(val)
             })
-        console.log('Request body', this.state.moviesFetchedByID)
-        console.log('Request body', movie)
-
     }
 
 }
