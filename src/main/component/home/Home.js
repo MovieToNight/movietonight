@@ -4,6 +4,7 @@ import Header from "../../header/Header";
 import MovieCard from "../cart/MovieCard";
 import {Provider} from "react-redux";
 import {Helmet} from "react-helmet";
+import Navbar from "react-bootstrap/Navbar";
 
 
 class Home extends Component {
@@ -24,11 +25,12 @@ class Home extends Component {
             });
         });
     }
+
     render() {
         return (
             <div>
                 <Helmet bodyAttributes={{style: 'background-color : white'}}>
-                    <meta charSet="utf-8" />
+                    <meta charSet="utf-8"/>
                     <title>Movie2Night</title>
                 </Helmet>
                 <Provider store={store}>
@@ -41,6 +43,9 @@ class Home extends Component {
                                store={store}
 
                     />
+                    <br/><br/><br/><br/><br/><br/>
+                    <Navbar bg="dark" expand="lg" variant="dark">
+                    </Navbar>
                 </Provider>
             </div>
         );

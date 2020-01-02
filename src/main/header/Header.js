@@ -71,53 +71,55 @@ class Header extends Component {
                             </NavDropdown>
                         </Nav>
                         {/*Sign up form*/}
-                        <Form inline={true} onSubmit={this.signUpHandler}
-                              hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
-                            <Form.Group controlId="signUpForm">
-                                <FormControl type="text" name="username" placeholder="Enter Username"
-                                             value={this.state.username} onChange={this.changeHandler}
-                                             required={true} minLength={5} className="mr-sm-2"/>
-                                <FormControl type="text" name="password" placeholder="Enter Password"
-                                             value={this.state.password} onChange={this.changeHandler}
-                                             required={true} minLength={5} className="mr-sm-2"/>
-                                <FormControl type="text" name="email" placeholder="Enter Mail" value={this.state.email}
-                                             onChange={this.changeHandler} required={true}
-                                             minLength={5} className="mr-sm-2"/>
-                            </Form.Group>
-                            <Button variant="outline-success" type='submit' onClick={this.hideMe}>SignUp</Button>
-                        </Form>
+                        <div hidden={true}>
+                            <Form inline={true} onSubmit={this.signUpHandler}
+                                  hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
+                                <Form.Group controlId="signUpForm">
+                                    <FormControl type="text" name="username" placeholder="Enter Username"
+                                                 value={this.state.username} onChange={this.changeHandler}
+                                                 required={true} minLength={5} className="mr-sm-2"/>
+                                    <FormControl type="text" name="password" placeholder="Enter Password"
+                                                 value={this.state.password} onChange={this.changeHandler}
+                                                 required={true} minLength={5} className="mr-sm-2"/>
+                                    <FormControl type="text" name="email" placeholder="Enter Mail"
+                                                 value={this.state.email}
+                                                 onChange={this.changeHandler} required={true}
+                                                 minLength={5} className="mr-sm-2"/>
+                                </Form.Group>
+                                <Button variant="outline-success" type='submit' onClick={this.hideMe}>SignUp</Button>
+                            </Form>
 
-                        {/* Logged in form*/}
+                            {/* Logged in form*/}
 
-                        <Form inline={true} onSubmit={this.onSubmitHandler}
-                              hidden={this.state.isSignUpClicked || this.state.isLoggedIn}>
-                            <Form.Group controlId="loginForm">
-                                <FormControl type="text" name="username" placeholder="Enter Username"
-                                             ref={this.inputRef}
-                                             required
-                                             value={this.state.username} onChange={this.changeUsername}
-                                             className="mr-sm-2"/>
-                                <FormControl type="password" placeholder="Enter Password" required
-                                             value={this.state.password}
-                                             onChange={this.changePassword} className="mr-sm-2"/>
-                            </Form.Group>
+                            <Form inline={true} onSubmit={this.onSubmitHandler}
+                                  hidden={this.state.isSignUpClicked || this.state.isLoggedIn}>
+                                <Form.Group controlId="loginForm">
+                                    <FormControl type="text" name="username" placeholder="Enter Username"
+                                                 ref={this.inputRef}
+                                                 required
+                                                 value={this.state.username} onChange={this.changeUsername}
+                                                 className="mr-sm-2"/>
+                                    <FormControl type="password" placeholder="Enter Password" required
+                                                 value={this.state.password}
+                                                 onChange={this.changePassword} className="mr-sm-2"/>
+                                </Form.Group>
 
-                            <ButtonToolbar>
-                                <Button variant="outline-success" type={"submit"}> Login</Button>
-                                <Button variant="outline-success" type='button' onClick={this.hideMe}> SignUp</Button>
-                            </ButtonToolbar>
+                                <ButtonToolbar>
+                                    <Button variant="outline-success" type={"submit"}> Login</Button>
+                                    <Button variant="outline-success" type='button'
+                                            onClick={this.hideMe}> SignUp</Button>
+                                </ButtonToolbar>
 
-                        </Form>
+                            </Form>
 
-                        <Form hidden={!this.state.isLoggedIn}>
-                            <Navbar.Collapse className="justify-content-end">
-                                <Nav className="mr-auto">
-                                    <LogoutModel/>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Form>
-
-
+                            <Form hidden={!this.state.isLoggedIn}>
+                                <Navbar.Collapse className="justify-content-end">
+                                    <Nav className="mr-auto">
+                                        <LogoutModel/>
+                                    </Nav>
+                                </Navbar.Collapse>
+                            </Form>
+                        </div>
                     </Navbar.Collapse>
                 </Navbar>
             </Sticky>
