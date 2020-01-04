@@ -38,9 +38,11 @@ class SimilarMovies extends Component {
             <div>
                 <Provider store={store}>
                     <Header message='Movie2Night'/>
+                    {console.log(this.state.match.params)}
                     <Container fluid={true} className="scrolling-wrapper">
-                        <Divider horizontal><h2>{this.state.match.params.genre}</h2></Divider>
+                        <Divider horizontal><h2>Movies Like - {this.state.match.params.movie}</h2></Divider>
                         {
+
                             this.state.movie.length ?
                                 <Card.Group>
                                     {
@@ -69,7 +71,7 @@ class SimilarMovies extends Component {
                                                     />
                                                 </Card.Content>
                                                 <Card.Content extra>
-                                                    <Rating name="half-rating" value={2.5} precision={0.5}
+                                                    <Rating name="half-rating" value={item.rating} precision={0.5}
                                                             readOnly={true}/>
                                                 </Card.Content>
                                             </Card>
