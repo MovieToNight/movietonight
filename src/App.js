@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from "./main/component/home/Home";
 import MovieType from "./main/component/pages/MovieType";
 import Movie from "./main/component/cart/Movie";
+import SimilarMovies from "./main/component/pages/SimilarMovies";
 
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
                         <Route exact path={"/"} component={Home}/>
                         <Route exact path={'/:genre'} component={MovieType}/>
                         <Route exact path={'/m2n/admin'} component={Movie}/>
+                        <Route exact path={'/similarMovies/:movie'} component={SimilarMovies}/>
 
                     </Switch>
                 </Router>

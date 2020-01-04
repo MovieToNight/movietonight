@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dropdown} from 'semantic-ui-react'
 import axios from "axios";
+import Container from "@material-ui/core/Container";
 
 class SearchBar extends React.Component {
 
@@ -9,7 +10,8 @@ class SearchBar extends React.Component {
 
         this.state = {
             options: [],
-            movies: []
+            movies: [],
+            redirectUrl: ''
         }
     }
 
@@ -17,7 +19,6 @@ class SearchBar extends React.Component {
     componentDidMount() {
         axios.get("http://localhost:8080/movieWithPoster")
             .then(res => {
-                console.log("In API", res.data)
                 this.setState({
                     movies: res.data
                 })
@@ -29,25 +30,43 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <Dropdown
-                placeholder='Search Similar Movies'
-                fluid
-                search
-                selection
-                options={this.state.movies}
-                onSearchChange={this.fetchData}
-                onClose={this.handleAddItem}
-            />
+            <Container inlist={true} onSelect={this.redirectToSearch}>
+                <Dropdown
+                    header={'Movies'}
+                    placeholder='Search Similar Movies'
+                    fluid
+                    search
+                    selection
+                    lazyLoad={true}
+                    options={this.state.movies}
+                    minCharacters={1}
+                    selectOnNavigation={true}
+                    value={this.state.redirectUrl}
+                    noResultsMessage={'No Movies found in our database, please try selecting some other movie.'}
+                    onChange={this.fetchData}
+                    button={true}
+                    onClose={this.redirectToSearch}
+                    onSelect={this.redirectToSearch}
+                />
+            </Container>
+
+
         );
     }
 
-    fetchData = () => {
+    fetchData = (e, {value}) => {
+        this.setState({
+            redirectUrl: value.toString()
+        })
+    }
+
+    redirectToSearch = () => {
+        if (this.state.redirectUrl) {
+            window.location.href = "similarMovies/" + this.state.redirectUrl
+        }
 
     }
 
-    handleAddItem = () => {
-        console.log("On done")
-    }
 }
 
 export default SearchBar;
