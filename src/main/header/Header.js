@@ -14,6 +14,7 @@ import headerDropDownAction from "../redux/header/headerDropdownActions";
 import LogoutModel from "./LogoutModal";
 import {Sticky} from "semantic-ui-react";
 import axios from "axios";
+import Feedback from "../component/Feedback";
 
 class Header extends Component {
 
@@ -71,6 +72,11 @@ class Header extends Component {
                             </NavDropdown>
                         </Nav>
                         {/*Sign up form*/}
+
+
+                        <div>
+                            <Feedback/>
+                        </div>
                         <div hidden={true}>
                             <Form inline={true} onSubmit={this.signUpHandler}
                                   hidden={!this.state.isSignUpClicked || this.state.isLoggedIn}>
