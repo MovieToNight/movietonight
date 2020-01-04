@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import "react-multi-carousel/lib/styles.css";
 import CardBuilder from "./CardBuilder";
-import SearchBar from "../SearchBar";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
+import SearchBar from "../SearchBar";
 
 class MovieCard extends Component {
 
