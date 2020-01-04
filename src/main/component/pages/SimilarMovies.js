@@ -14,7 +14,9 @@ class SimilarMovies extends Component {
         super(props);
         this.state = {
             match: this.props.match,
-            movie: []
+            movie: [],
+            errorMessage: ''
+
         }
     }
 
@@ -25,7 +27,15 @@ class SimilarMovies extends Component {
         console.log(type)
         axios.get(url)
             .then(res => {
-                this.setState({movie: res.data})
+
+
+                if (res.data.length > 0) {
+                    this.setState({movie: res.data})
+                } else {
+                    this.setState({
+                        errorMessage: 'No Movies Found Under this category'
+                    })
+                }
             })
             .catch(val => {
                 console.log(val)
@@ -77,7 +87,7 @@ class SimilarMovies extends Component {
                                             </Card>
                                         )
                                     }
-                                </Card.Group> : <h1>No Movies Found Under this category</h1>
+                                </Card.Group> : <h1>{this.state.errorMessage}</h1>
                         }
                     </Container>
                 </Provider>
