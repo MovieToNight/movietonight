@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, Embed} from 'semantic-ui-react'
+import {Button, Embed, Icon} from 'semantic-ui-react'
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,12 +11,13 @@ function VideoPopup(props) {
     const [modalShow, setModalShow] = useState(false);
 
     return (
-        <ButtonToolbar>
-            <Button variant="outline-dark" size={"tiny"} onClick={() => setModalShow(true)}>
-                Movie Info
+      <div>            
+          <Button variant="text" size={"tiny"} onClick={() => setModalShow(true)}>
+            Details
             </Button>
             <MydModalWithGrid value={props} show={modalShow} onHide={() => setModalShow(false)}/>
-        </ButtonToolbar>
+        </div>
+
     );
 }
 

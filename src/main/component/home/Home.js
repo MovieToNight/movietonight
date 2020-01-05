@@ -5,6 +5,7 @@ import MovieCard from "../cart/MovieCard";
 import {Provider} from "react-redux";
 import {Helmet} from "react-helmet";
 import Navbar from "react-bootstrap/Navbar";
+import StickyFooter from 'react-sticky-footer';
 
 
 class Home extends Component {
@@ -43,9 +44,8 @@ class Home extends Component {
                                store={store}
 
                     />
-                    <br/><br/><br/><br/><br/><br/>
-                    <Navbar bg="dark" expand="lg" variant="dark">
-                    </Navbar>
+
+
                 </Provider>
             </div>
         );

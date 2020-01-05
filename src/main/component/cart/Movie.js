@@ -8,6 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+
 import Navbar from "react-bootstrap/Navbar";
 import MySnackbarContentWrapper from "../notification/MySnackbarContentWrapper";
 
@@ -82,10 +83,13 @@ class Movie extends Component {
                                 <MenuItem value={4}>DC</MenuItem>
                                 <MenuItem value={5}>Mind Bending</MenuItem>
                                 <MenuItem value={6}>Christopher Nolan</MenuItem>
-                                <MenuItem value={7}>Parallel Universe</MenuItem>
-                                <MenuItem value={8}>Mystery</MenuItem>
-                                <MenuItem value={9}>Deja Vu</MenuItem>
-                                <MenuItem value={10}>Psychological Thrillers</MenuItem>
+                                <MenuItem value={7}>Space</MenuItem>
+                                <MenuItem value={8}>Parallel Unniverse</MenuItem>
+                                <MenuItem value={9}>Mystery</MenuItem>
+                                <MenuItem value={10}>Deja Vu</MenuItem>
+                                <MenuItem value={11}>Psychological Thrillers</MenuItem>
+                                <MenuItem value={12}>Sci-Fi</MenuItem>
+
                             </Select>
 
                             <br/>
@@ -176,7 +180,7 @@ class Movie extends Component {
         )
 
     }
-
+o
     printAll = (e) => {
         const url = "http://www.omdbapi.com/?i=" + this.state.selectedMovieID + "&apikey=80bca1c4";
         console.log(url)

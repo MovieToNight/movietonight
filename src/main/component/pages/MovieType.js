@@ -6,6 +6,7 @@ import {Card, Divider, Image} from "semantic-ui-react";
 import VideoPopup from "../cart/VideoPopup";
 import Container from "@material-ui/core/Container";
 import Rating from '@material-ui/lab/Rating';
+
 import axios from "axios";
 
 class MovieType extends Component {
