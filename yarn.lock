@@ -1331,6 +1331,14 @@
     "@progress/kendo-react-popup" "3.9.0"
     prop-types "^15.6.0"
 
+"@progress/kendo-react-intl@^3.9.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-intl/-/kendo-react-intl-3.11.0.tgz#6605f2efc0240196f9324fedd70fe031b1dff832"
+  integrity sha512-NQSloAE+LXmJioWO1oswE+/+fcoU3Vm0A0R+osu7kQ1bKRQVzEYpGbziM7isjU7alEUKl/kSuRM2GYWxnylUmg==
+  dependencies:
+    "@telerik/kendo-intl" "^2.1.0"
+    prop-types "^15.6.0"
+
 "@progress/kendo-react-popup@3.9.0":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@progress/kendo-react-popup/-/kendo-react-popup-3.9.0.tgz#184aa8d3c671b1fb2a2869e4dd27742ada2861e6"
@@ -1488,6 +1496,11 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@telerik/kendo-draggable/-/kendo-draggable-2.0.0.tgz#95ca6fdc56022d80ab5d0fec98463e2bdf4fc3ec"
   integrity sha512-6fZcwVZQNh9ovWbueo2VFgpFxktWdxaABe/gVZ+dJy4h+ngkoSr0HSmfUJY5QupMQ1RvLA9hr3Eficbqx+gU0Q==
+
+"@telerik/kendo-intl@^2.1.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@telerik/kendo-intl/-/kendo-intl-2.1.1.tgz#d002b1dd4143d1adf17bc9d5a50cdc451a92ffd0"
+  integrity sha512-aAJCnaWpKdnKpqrZgXf6LlgH75epc0byDoYxyzPUEPuKizQ5JTEP1KwQa4y0qkLcTgC3XSUQegadXOLzJ6phgg==
 
 "@testing-library/dom@^6.3.0":
   version "6.10.1"
@@ -1962,9 +1975,9 @@ acorn-walk@^6.0.1:
   integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
 
 acorn@^5.5.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 acorn@^6.0.1, acorn@^6.0.4, acorn@^6.2.1:
   version "6.4.0"
